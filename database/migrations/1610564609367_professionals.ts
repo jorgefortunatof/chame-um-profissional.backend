@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class CreateProfessional extends BaseSchema {
-  protected tableName = 'professional'
+export default class CreateProfessionals extends BaseSchema {
+  protected tableName = 'professionals'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -9,9 +9,10 @@ export default class CreateProfessional extends BaseSchema {
       table.string('avatar_url')
       table.string('email').notNullable().unique()
       table.string('name').notNullable()
+      table.string('password').notNullable()
       table.string('phone')
       table.string('location')
-      table.integer('category_id').references('id').inTable('category').onDelete('set null')
+      table.integer('category_id').references('id').inTable('categories').onDelete('set null')
       table.text('description')
       table.integer('rating').defaultTo(0)
       table.string('facebook_url')

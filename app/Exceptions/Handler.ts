@@ -20,4 +20,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
     super(Logger)
   }
+
+  public async handle(error, ctx) {
+    if (error.status && error.message) {
+      return ctx.response.status(error.status).json({ message: error.message })
+    }
+
+    return ctx.response.status(500).json({ message: 'Erro interno do servidor' })
+  }
 }

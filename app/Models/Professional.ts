@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import Hash from '@ioc:Adonis/Core/Hash'
+import Category from './Category'
 
 export default class Professional extends BaseModel {
   @column({ isPrimary: true })
@@ -15,6 +17,9 @@ export default class Professional extends BaseModel {
   public email: string
 
   @column()
+  public password?: string
+
+  @column()
   public name: string
 
   @column()
@@ -23,8 +28,8 @@ export default class Professional extends BaseModel {
   @column()
   public location: string
 
-  @column()
-  public categoryId: number
+  @belongsTo(() => Category)
+  public category: BelongsTo<typeof Category>
 
   @column()
   public description: string
@@ -43,4 +48,11 @@ export default class Professional extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @beforeSave()
+  public static async hashPassword(professional: Professional) {
+    if (professional.$dirty.password && professional.password) {
+      professional.password = await Hash.make(professional.password)
+    }
+  }
 }
