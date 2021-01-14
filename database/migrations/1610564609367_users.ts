@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class CreateProfessionals extends BaseSchema {
-  protected tableName = 'professionals'
+export default class CreateUsers extends BaseSchema {
+  protected tableName = 'users'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -11,6 +11,7 @@ export default class CreateProfessionals extends BaseSchema {
       table.string('name').notNullable()
       table.string('password').notNullable()
       table.string('phone')
+      table.boolean('is_professional')
       table.string('location')
       table.integer('category_id').references('id').inTable('categories').onDelete('set null')
       table.text('description')

@@ -1,15 +1,15 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Professional from 'App/Models/Professional'
-import CreateProfessionalService from 'App/Services/CreateProfessionalService'
+import User from 'App/Models/User'
+import CreateUserService from 'App/Services/CreateUserService'
 
 export default class AuthController {
   public async register({ request }: HttpContextContract) {
-    const data: Professional = request.only(['name', 'email', 'password'])
+    const data: User = request.only(['name', 'email', 'password'])
 
-    const createProfessionalService = new CreateProfessionalService()
-    const professional = await createProfessionalService.execute(data)
+    const createUserService = new CreateUserService()
+    const user = await createUserService.execute(data)
 
-    return professional
+    return user
   }
 
   // public async authenticate() { }

@@ -3,7 +3,7 @@ import { BaseModel, beforeSave, BelongsTo, belongsTo, column } from '@ioc:Adonis
 import Hash from '@ioc:Adonis/Core/Hash'
 import Category from './Category'
 
-export default class Professional extends BaseModel {
+export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -50,9 +50,9 @@ export default class Professional extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async hashPassword(professional: Professional) {
-    if (professional.$dirty.password && professional.password) {
-      professional.password = await Hash.make(professional.password)
+  public static async hashPassword(user: User) {
+    if (user.$dirty.password && user.password) {
+      user.password = await Hash.make(user.password)
     }
   }
 }
