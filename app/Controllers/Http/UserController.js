@@ -9,6 +9,13 @@ class UserController {
 
 		return user;
 	}
+
+	async update({ request, params }) {
+		// const { id } = params;
+		// const data = request.all();
+
+		return { ok: true };
+	}
 }
 
 module.exports = UserController;

@@ -21,6 +21,10 @@ class User extends Model {
 		});
 	}
 
+	static get hidden() {
+		return ['password'];
+	}
+
 	/**
 	 * A relationship on tokens is required for auth to
 	 * work. Since features like `refreshTokens` or
@@ -32,9 +36,9 @@ class User extends Model {
 	 * @return {Object}
 	 */
 
-	tokens() {
-		return this.hasMany('App/Models/Token');
-	}
+	// tokens() {
+	// 	return this.hasMany('App/Models/Token');
+	// }
 }
 
 module.exports = User;

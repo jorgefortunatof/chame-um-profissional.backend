@@ -19,4 +19,12 @@ const Route = use('Route');
 Route.post('/signup', 'UserController.create');
 Route.post('/signin', 'SessionController.create');
 
-// Route.post('/signin', 'SessionController.create').middleware(['auth'])
+// category
+Route.post('/category', 'CategoryController.create').middleware(['auth']);
+Route.put('/category/:id', 'CategoryController.update').middleware(['auth']);
+Route.delete('/category/:id', 'CategoryController.delete').middleware(['auth']);
+Route.get('/category', 'CategoryController.list');
+
+// professional
+Route.post('/user', 'UserController.create').middleware(['auth']);
+Route.put('/user/:id', 'UserController.update').middleware(['auth']);
