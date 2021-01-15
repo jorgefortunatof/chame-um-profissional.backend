@@ -12,7 +12,7 @@ class UserSchema extends Schema {
 			table.string('name').notNullable();
 			table.string('password').notNullable();
 			table.string('phone');
-			table.boolean('is_professional').defaultTo(false);
+			table.enu('type', ['user', 'professional', 'admin']).defaultTo('user');
 			table.string('location');
 			table
 				.integer('category_id')

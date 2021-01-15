@@ -26,5 +26,5 @@ Route.delete('/category/:id', 'CategoryController.delete').middleware(['auth']);
 Route.get('/category', 'CategoryController.list');
 
 // professional
-Route.post('/user', 'UserController.create').middleware(['auth']);
-Route.put('/user/:id', 'UserController.update').middleware(['auth']);
+Route.post('/user', 'UserController.create').middleware(['authAdmin']);
+Route.put('/user/:id', 'UserController.update').middleware(['authAdmin']);
