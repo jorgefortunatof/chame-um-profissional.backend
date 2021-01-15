@@ -27,7 +27,7 @@ class CategoryController {
 		const category = await Category.find(id);
 		await category.delete();
 
-		return category;
+		return { ok: true };
 	}
 
 	async list() {

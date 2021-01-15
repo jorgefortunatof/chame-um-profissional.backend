@@ -11,8 +11,21 @@ class UserController {
 	}
 
 	async update({ request, params }) {
-		// const { id } = params;
-		// const data = request.all();
+		const { id } = params;
+		const data = request.all();
+
+		const user = await User.find(id);
+		user.merge(data);
+		await user.save();
+
+		return user;
+	}
+
+	async delete({ params }) {
+		const { id } = params;
+
+		const user = await User.find(id);
+		user.delete();
 
 		return { ok: true };
 	}

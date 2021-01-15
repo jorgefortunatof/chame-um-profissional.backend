@@ -20,11 +20,20 @@ Route.post('/signup', 'UserController.create');
 Route.post('/signin', 'SessionController.create');
 
 // category
-Route.post('/category', 'CategoryController.create').middleware(['auth']);
-Route.put('/category/:id', 'CategoryController.update').middleware(['auth']);
-Route.delete('/category/:id', 'CategoryController.delete').middleware(['auth']);
 Route.get('/category', 'CategoryController.list');
+Route.post('/category', 'CategoryController.create').middleware(['admin']);
+Route.put('/category/:id', 'CategoryController.update').middleware(['admin']);
+Route.delete('/category/:id', 'CategoryController.delete').middleware([
+	'admin',
+]);
+
+// user
+Route.get('/user', 'UserController.list').middleware(['admin']);
+Route.post('/user', 'UserController.create').middleware(['admin']);
+Route.put('/user/:id', 'UserController.update').middleware(['editUser']);
+Route.delete('/user/:id', 'UserController.delete').middleware(['editUser']);
 
 // professional
-Route.post('/user', 'UserController.create').middleware(['authAdmin']);
-Route.put('/user/:id', 'UserController.update').middleware(['authAdmin']);
+// Route.get('/professional'); // search
+// Route.get('/professional/:id'); // professional page
+// Route.get('/professional/spotlight'); // spotlight secction
