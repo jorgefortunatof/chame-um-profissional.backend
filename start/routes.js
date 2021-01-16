@@ -16,6 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
 
+// auth
 Route.post('/signup', 'UserController.create');
 Route.post('/signin', 'SessionController.create');
 
@@ -34,5 +35,5 @@ Route.put('/user/:id', 'UserController.update').middleware(['editUser']);
 Route.delete('/user/:id', 'UserController.delete').middleware(['editUser']);
 
 // professional
-Route.get('/professional', 'ProfessionalController.list'); // by category and spotlight
-Route.get('/professional/:id', 'ProfessionalController.index'); // professional page
+Route.get('/professional', 'ProfessionalController.list');
+Route.get('/professional/:id', 'ProfessionalController.index');
