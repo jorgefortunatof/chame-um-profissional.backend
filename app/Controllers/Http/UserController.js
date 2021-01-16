@@ -3,6 +3,13 @@
 const User = use('App/Models/User');
 
 class UserController {
+	async index({ params }) {
+		const { id } = params;
+		const user = await User.find(id);
+
+		return user;
+	}
+
 	async create({ request }) {
 		const data = request.only(['name', 'email', 'password']);
 

@@ -31,6 +31,7 @@ Route.delete('/category/:id', 'CategoryController.delete').middleware([
 // user
 Route.get('/user', 'UserController.list').middleware(['admin']);
 Route.post('/user', 'UserController.create').middleware(['admin']);
+Route.get('/user/:id', 'UserController.index').middleware(['editUser']);
 Route.put('/user/:id', 'UserController.update').middleware(['editUser']);
 Route.delete('/user/:id', 'UserController.delete').middleware(['editUser']);
 
