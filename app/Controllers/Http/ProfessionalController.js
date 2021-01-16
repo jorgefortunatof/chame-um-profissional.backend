@@ -1,5 +1,6 @@
 'use strict';
 
+const CustomException = use('App/Exceptions/CustomException');
 const User = use('App/Models/User');
 const Category = use('App/Models/Category');
 
@@ -11,6 +12,10 @@ class ProfessionalController {
 			.where('id', id)
 			.where('type', 'professional')
 			.first();
+
+		if (!professional) {
+			throw new CustomException('Profissional não encontrado', 400);
+		}
 
 		return professional;
 	}

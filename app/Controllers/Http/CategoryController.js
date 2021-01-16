@@ -1,5 +1,6 @@
 'use strict';
 
+const CustomException = use('App/Exceptions/CustomException');
 const Category = use('App/Models/Category');
 
 class CategoryController {
@@ -15,6 +16,10 @@ class CategoryController {
 		const { name } = request.only(['name']);
 
 		const category = await Category.find(id);
+		if (!category) {
+			throw new CustomException('Categoria não encontrada', 400);
+		}
+
 		category.name = name;
 		await category.save();
 
@@ -25,6 +30,10 @@ class CategoryController {
 		const { id } = params;
 
 		const category = await Category.find(id);
+		if (!category) {
+			throw new CustomException('Categoria não encontrada', 400);
+		}
+
 		await category.delete();
 
 		return { ok: true };

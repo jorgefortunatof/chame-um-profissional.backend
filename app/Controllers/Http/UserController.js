@@ -1,11 +1,16 @@
 'use strict';
 
+const CustomException = use('App/Exceptions/CustomException');
 const User = use('App/Models/User');
 
 class UserController {
 	async index({ params }) {
 		const { id } = params;
 		const user = await User.find(id);
+
+		if (!user) {
+			throw new CustomException('Usuário não encontrado', 400);
+		}
 
 		return user;
 	}
@@ -24,6 +29,10 @@ class UserController {
 		const data = request.all();
 
 		const user = await User.find(id);
+		if (!user) {
+			throw new CustomException('Usuário não encontrado', 400);
+		}
+
 		user.merge(data);
 		await user.save();
 
@@ -34,9 +43,11 @@ class UserController {
 		const { id } = params;
 
 		const user = await User.find(id);
-		user.delete();
+		if (!user) {
+			throw new CustomException('Usuário não encontrado', 400);
+		}
 
-		return { ok: true };
+		await user.delete();
 	}
 }
 
