@@ -22,7 +22,11 @@ class User extends Model {
 	}
 
 	static get hidden() {
-		return ['password'];
+		return ['password', 'category_id'];
+	}
+
+	category() {
+		return this.belongsTo('App/Models/Category');
 	}
 
 	/**
