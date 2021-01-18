@@ -18,6 +18,12 @@ class UserController {
 	async create({ request }) {
 		const data = request.only(['name', 'email', 'password']);
 
+		const alreadyExists = await User.findBy('email', data.email);
+
+		if (alreadyExists) {
+			throw new CustomException('Já existe um usuário com esse email', 400);
+		}
+
 		const user = await User.create(data);
 		delete user.password;
 

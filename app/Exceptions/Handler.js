@@ -22,6 +22,8 @@ class ExceptionHandler extends BaseExceptionHandler {
 	 */
 	async handle(error, { request, response }) {
 		if (error.status === 500) {
+			console.log(`[${new Date().toUTCString()}] - ${error}`);
+
 			return response
 				.status(error.status)
 				.json({ message: 'Erro interno do servidor' });
