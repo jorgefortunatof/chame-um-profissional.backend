@@ -31,7 +31,7 @@ class ProfessionalController {
 		}
 
 		if (rating) {
-			query.where('rating', '>=', rating);
+			query.orderBy('rating', 'desc');
 		}
 
 		if (search) {
