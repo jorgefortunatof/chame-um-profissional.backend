@@ -37,4 +37,5 @@ Route.delete('/user/:id', 'UserController.delete').middleware(['editUser']);
 
 // professional
 Route.get('/professional', 'ProfessionalController.list');
+Route.get('/professional/spotlight', 'ProfessionalController.spotlight');
 Route.get('/professional/:id', 'ProfessionalController.index');

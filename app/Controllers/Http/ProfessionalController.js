@@ -21,17 +21,13 @@ class ProfessionalController {
 	}
 
 	async list({ request }) {
-		const { category_id, rating, search } = request.get();
+		const { category_id, search } = request.get();
 
 		const page = request.header('page');
 		const query = User.query().where('type', 'professional');
 
 		if (category_id) {
 			query.where('category_id', category_id);
-		}
-
-		if (rating) {
-			query.orderBy('rating', 'desc');
 		}
 
 		if (search) {
@@ -45,6 +41,17 @@ class ProfessionalController {
 		}
 
 		const professionals = await query.with('category').paginate(page);
+
+		return professionals;
+	}
+
+	async spotlight() {
+		const query = User.query()
+			.where('type', 'professional')
+			.orderBy('rating', 'desc')
+			.limit(6);
+
+		const professionals = await query.with('category').fetch();
 
 		return professionals;
 	}
