@@ -36,11 +36,11 @@ class ProfessionalController {
 
 		if (search) {
 			const categoriesId = await Category.query()
-				.where('name', 'iLIKE', `%${search}%`)
+				.where('name', 'iLIKE', `%${search.replace(/[^a-zA-Zs]/g, '_')}%`)
 				.ids();
 
 			query
-				.where('name', 'iLIKE', `%${search}%`)
+				.where('name', 'iLIKE', `%${search.replace(/[^a-zA-Zs]/g, '_')}%`)
 				.orWhereIn('category_id', categoriesId);
 		}
 
