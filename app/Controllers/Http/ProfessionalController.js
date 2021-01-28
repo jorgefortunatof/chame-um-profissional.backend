@@ -50,7 +50,13 @@ class ProfessionalController {
 			.where('type', 'professional')
 			.orderBy('rating', 'desc')
 			.limit(6);
+		const professionals = await query.with('category').fetch();
 
+		return professionals;
+	}
+
+	async nextToYou() {
+		const query = User.query().where('type', 'professional').limit(6);
 		const professionals = await query.with('category').fetch();
 
 		return professionals;
