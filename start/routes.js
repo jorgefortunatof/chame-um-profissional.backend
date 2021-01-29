@@ -17,8 +17,8 @@
 const Route = use('Route');
 
 // auth
-Route.post('/signup', 'UserController.create');
-Route.post('/signin', 'SessionController.create');
+Route.post('/signup', 'AuthController.register');
+Route.post('/signin', 'AuthController.auth');
 
 // category
 Route.get('/category', 'CategoryController.list');

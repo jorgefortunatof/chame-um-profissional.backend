@@ -16,7 +16,7 @@ class UserController {
 	}
 
 	async create({ request }) {
-		const data = request.only(['name', 'email', 'password']);
+		const data = request.all();
 
 		const alreadyExists = await User.findBy('email', data.email);
 
@@ -25,7 +25,6 @@ class UserController {
 		}
 
 		const user = await User.create(data);
-		delete user.password;
 
 		return user;
 	}
