@@ -40,3 +40,8 @@ Route.get('/professional/spotlight', 'ProfessionalController.spotlight');
 Route.get('/professional/nextToYou', 'ProfessionalController.nextToYou');
 Route.get('/professional', 'ProfessionalController.list');
 Route.get('/professional/:id', 'ProfessionalController.index');
+
+// avatar
+Route.post('/avatar/:id', 'AvatarController.create')
+	.validator('StoreAvatar')
+	.middleware(['editUser']);

@@ -14,7 +14,7 @@ class AdminOrSelf {
 		await auth.check();
 
 		if (auth.user.type !== 'admin') {
-			if (auth.user.id === Number(id)) {
+			if (auth.user.id === id) {
 				if (request.method() === 'PUT') {
 					const { type } = request.all();
 
