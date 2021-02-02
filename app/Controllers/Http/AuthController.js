@@ -13,9 +13,9 @@ class AuthController {
 			throw new CustomException('Já existe um usuário com esse email', 400);
 		}
 
-		await User.create(data);
+		const user = await User.create(data);
 
-		return this.auth({ request, auth });
+		return user;
 	}
 
 	async auth({ request, auth }) {
