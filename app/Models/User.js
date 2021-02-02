@@ -22,7 +22,7 @@ class User extends Model {
 	}
 
 	static get hidden() {
-		return ['password', 'category_id'];
+		return ['password', 'category_id', 'created_at', 'updated_at'];
 	}
 
 	category() {

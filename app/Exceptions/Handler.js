@@ -29,6 +29,17 @@ class ExceptionHandler extends BaseExceptionHandler {
 				.json({ message: 'Erro interno do servidor' });
 		}
 
+		switch (error.code) {
+			case 'E_USER_NOT_FOUND':
+				return response
+					.status(error.status)
+					.json({ message: 'Usuário não existe' });
+			case 'E_PASSWORD_MISMATCH':
+				return response
+					.status(error.status)
+					.json({ message: 'Credenciais incorretas' });
+		}
+
 		return response.status(error.status).json({ message: error.message });
 	}
 
