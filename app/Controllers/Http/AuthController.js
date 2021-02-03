@@ -14,6 +14,7 @@ class AuthController {
 		}
 
 		const user = await User.create(data);
+		user.category = await user.category().fetch();
 
 		return user;
 	}
@@ -22,7 +23,9 @@ class AuthController {
 		const { email, password } = request.all();
 
 		const { token } = await auth.attempt(email, password);
+
 		const user = await User.findBy({ email: email });
+		user.category = await user.category().fetch();
 
 		return { token, user };
 	}

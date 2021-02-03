@@ -10,8 +10,9 @@ class UserSchema extends Schema {
 			table.string('avatar_url');
 			table.string('email').notNullable().unique();
 			table.string('name').notNullable();
+			table.string(14, 'cpf');
 			table.string('password').notNullable();
-			table.string('phone');
+			table.string(16, 'phone');
 			table.enu('type', ['user', 'professional', 'admin']).defaultTo('user');
 			table.string('location');
 			table
