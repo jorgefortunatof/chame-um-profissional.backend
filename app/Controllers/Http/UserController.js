@@ -6,7 +6,7 @@ const User = use('App/Models/User');
 class UserController {
 	async index({ params }) {
 		const { id } = params;
-		const user = await User.find(id).with('category');
+		const user = await User.find(id);
 
 		if (!user) {
 			throw new CustomException('Usuário não encontrado', 400);
